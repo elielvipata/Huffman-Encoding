@@ -1,0 +1,9 @@
+the major social media services are often described as fundamental platforms of the internet age. the companies that control these services use this argument to justify their astronomical valuations, and their critics use it to validate the need for regulatory intervention.
+
+as longtime readers know, i’m often skeptical of this digital deification.
+
+services like facebook, twitter or instagram aren’t really platforms: instead of providing core functionalities on which others can build a diversity of useful applications (the standard definition of a platform), they instead offer closed ecosystems in which they carefully monitor and control user behavior.
+
+these services are also far from fundamental. nothing about web teleology, for example, implies that twitter’s arcane mix of short message formats, ampersands, and retweet ratios is an unavoidable technological advance. if jack dorsey shut down his frankenstein’s monster tomorrow, few would wake up a year from now really missing what it added to the online universe.
+
+recently, however, i’ve been grappling with the idea that there’s one immensely powerful social service about which my skepticism doesn’t seem to neatly apply.
