@@ -1,6 +1,3 @@
-import com.sun.deploy.util.StringUtils;
-import com.sun.javaws.IconUtil;
-
 import java.io.*;
 import java.util.*;
 
@@ -72,47 +69,15 @@ public class Huffman {
 
     public static void main(String[] args){
         try {
-            frequency("LocalTests/inputFiles/testMessage2.txt");
+            frequency("LocalTests/inputFiles/testMessage1.txt");
             buildTree("frequency.txt");
-            encode("codes.txt","LocalTests/inputFiles/testMessage2.txt");
-            decode("tree.txt","encode.bin");
+            encode("codes.txt","LocalTests/inputFiles/testMessage1.txt");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        try {
-            Scanner scanner = new Scanner(new File("LocalTests/inputFiles/encode2.bin"));
-            String expected = scanner.nextLine();
-            scanner = new Scanner(new File("encode.bin"));
-            String actual = scanner.nextLine();
-            System.out.println(actual.length() + " " + expected.length());
-
-            for(int i = 0; i< actual.length(); i++){
-//                System.out.println(actual.charAt(i));
-                if(actual.charAt(i) == expected.charAt(i)){
-                    System.out.println(actual.charAt(i)+ " " + expected.charAt(i));
-                }else{
-                    System.out.println("Mismatch at " + i +"->"+actual.charAt(i)+"/"+expected.charAt(i));
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
     }
 
-    
-    
-
-    /**
-     * Produces the output codes.txt and tree.txt
-     *
-     * @param freqFile - File containing the frequencies
-     * @throws Exception
-     */
     public static void buildTree(String freqFile) throws Exception {
-        /** use the queue below **/
         PriorityQueue<HuffmanNode> queue = new PriorityQueue<>();
         ArrayList<HuffmanNode> tree =  new ArrayList<>();
         ArrayList<Huffman> codes = new ArrayList<>();
@@ -339,46 +304,6 @@ public class Huffman {
         }
     }
 
-    public static void decode(String tree, String encode) throws Exception {
-        //TODO
-        PriorityQueue<HuffmanNode> queue = new PriorityQueue<>();
-        HuffmanNode root = null;
-        Scanner scanner = new Scanner(new File(encode));
-        String encoded = scanner.nextLine();
-        scanner = new Scanner(new File(tree));
-        while(scanner.hasNextLine()){
-            String[] nodes = scanner.nextLine().split("-");
-            HuffmanNode cRoot,left,right;
-            cRoot = setValues(1,nodes);
-            left = setValues(0,nodes);
-            right = setValues(2,nodes);
-            cRoot.left = left;
-            cRoot.right = right;
-
-            queue.add(cRoot);
-            HuffmanNode current = queue.poll();
-            root = buildTree(cRoot,current);
-            queue.add(current);
-            queue.add(root);
-
-
-        }
-        root = queue.poll();
-        File file = new File("decode.txt");
-        if(file.exists()){
-            file.delete();
-        }
-        int index = 0;
-        for(int i = 0;i < encoded.length(); i++){
-           i =  traverse(root, i, encoded);
-        }
-//        while(index < encoded.length()-2) {
-//            index += traverse(root, index, encoded);
-//        }
-        FileWriter fileWriter = new FileWriter("decode.txt", true);
-        fileWriter.write("\n");
-        fileWriter.close();
-    }
 
     public static HuffmanNode buildTree(HuffmanNode node, HuffmanNode root){
 
