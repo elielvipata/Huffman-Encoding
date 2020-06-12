@@ -70,12 +70,12 @@ public class Huffman {
 
     public static void main(String[] args){
         try {
-//            System.out.println("Calculating Frequencies...");
-//            frequency("bible.txt");
-//            System.out.println("Frequencies Done...");
-//            System.out.println("Now Building a tree...");
-//            buildTree("frequency.txt");
-//            System.out.println("Done building a tree...");
+            System.out.println("Calculating Frequencies...");
+            frequency("bible.txt");
+            System.out.println("Frequencies Done...");
+            System.out.println("Now Building a tree...");
+            buildTree("frequency.txt");
+           System.out.println("Done building a tree...");
             System.out.println("Now encoding...");
             encode("codes.txt","bible.txt");
             System.out.println("Encoding and Compression done...");
