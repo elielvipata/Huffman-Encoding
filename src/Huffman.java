@@ -14,12 +14,13 @@ public class Huffman {
     }
 
     public static HuffmanNode treeRoot = null;
-    /**
-     * Produces the output frequency.txt
-     *
-     * @param input - File containing the message
-     * @throws Exception
-     */
+    public static void preprocess(String file) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(file));
+        while(scanner.hasNextLine()){
+            System.out.println(scanner.nextLine());
+        }
+    }
+
     public static void frequency(String input) throws Exception {
         //TODO
 
@@ -39,7 +40,7 @@ public class Huffman {
                     frequencies.put('N',1);
                 }
             }
-            String line = scanner.nextLine();
+            String line = scanner.nextLine().toLowerCase();
             lines.add(line);
             for(int i = 0; i < line.length(); i++){
                 char currentChar = line.charAt(i);
@@ -69,9 +70,15 @@ public class Huffman {
 
     public static void main(String[] args){
         try {
-            frequency("LocalTests/inputFiles/testMessage1.txt");
-            buildTree("frequency.txt");
-            encode("codes.txt","LocalTests/inputFiles/testMessage1.txt");
+//            System.out.println("Calculating Frequencies...");
+//            frequency("bible.txt");
+//            System.out.println("Frequencies Done...");
+//            System.out.println("Now Building a tree...");
+//            buildTree("frequency.txt");
+//            System.out.println("Done building a tree...");
+            System.out.println("Now encoding...");
+            encode("codes.txt","bible.txt");
+            System.out.println("Encoding and Compression done...");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -218,16 +225,20 @@ public class Huffman {
             codes.put(current[0].charAt(0),current[1]);
         }
 
-//int x = 0;
-      String encoded = "";
+        String encoded = "";
         scanner = new Scanner(new File(message));
         char currentChar;
         while(scanner.hasNextLine()){
-            String current = scanner.nextLine();
+            String current = scanner.nextLine().toLowerCase();
             current = current.replaceAll(" ","S");
             current = current.replaceAll("\n","N");
             for(int i = 0; i < current.length(); i++){
                 currentChar = current.charAt(i);
+                String found = codes.get(currentChar);
+                if(found == null){
+                    System.out.println(currentChar);
+                    break;
+                }
                 encoded+=codes.get(currentChar);
             }
             if(scanner.hasNextLine()){
